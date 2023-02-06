@@ -1,0 +1,242 @@
+[
+  {
+    "id": 5,
+    "name": "Барнаул",
+    "region_id": 1,
+    "district_id": 41,
+    "population": 612091,
+    "foundation": 1730
+  },
+  {
+    "id": 704,
+    "name": "Владивосток",
+    "region_id": 5,
+    "district_id": 42,
+    "population": 592069,
+    "foundation": 1860
+  },
+  {
+    "id": 121,
+    "name": "Волгоград",
+    "region_id": 18,
+    "district_id": 40,
+    "population": 1021244,
+    "foundation": 1589
+  },
+  {
+    "id": 159,
+    "name": "Воронеж",
+    "region_id": 20,
+    "district_id": 30,
+    "population": 889989,
+    "foundation": 1586
+  },
+  {
+    "id": 829,
+    "name": "Екатеринбург",
+    "region_id": 65,
+    "district_id": 34,
+    "population": 1377738,
+    "foundation": 1723
+  },
+  {
+    "id": 993,
+    "name": "Ижевск",
+    "region_id": 94,
+    "district_id": 33,
+    "population": 628117,
+    "foundation": 1760
+  },
+  {
+    "id": 222,
+    "name": "Иркутск",
+    "region_id": 25,
+    "district_id": 41,
+    "population": 587225,
+    "foundation": 1661
+  },
+  {
+    "id": 922,
+    "name": "Казань",
+    "region_id": 92,
+    "district_id": 33,
+    "population": 1143546,
+    "foundation": 1005
+  },
+  {
+    "id": 315,
+    "name": "Кемерово",
+    "region_id": 32,
+    "district_id": 41,
+    "population": 532884,
+    "foundation": 1918
+  },
+  {
+    "id": 380,
+    "name": "Краснодар",
+    "region_id": 3,
+    "district_id": 40,
+    "population": 744933,
+    "foundation": 1793
+  },
+  {
+    "id": 410,
+    "name": "Красноярск",
+    "region_id": 4,
+    "district_id": 41,
+    "population": 1000000,
+    "foundation": 1628
+  },
+  {
+    "id": 177,
+    "name": "Махачкала",
+    "region_id": 82,
+    "district_id": 38,
+    "population": 577990,
+    "foundation": 1844
+  },
+  {
+    "id": 490,
+    "name": "Москва",
+    "region_id": 45,
+    "district_id": 30,
+    "population": 11514330,
+    "foundation": 1147
+  },
+  {
+    "id": 606,
+    "name": "Нижний Новгород",
+    "region_id": 22,
+    "district_id": 33,
+    "population": 1250615,
+    "foundation": 1221
+  },
+  {
+    "id": 321,
+    "name": "Новокузнецк",
+    "region_id": 32,
+    "district_id": 41,
+    "population": 547885,
+    "foundation": 1618
+  },
+  {
+    "id": 634,
+    "name": "Новосибирск",
+    "region_id": 50,
+    "district_id": 41,
+    "population": 1498921,
+    "foundation": 1893
+  },
+  {
+    "id": 643,
+    "name": "Омск",
+    "region_id": 52,
+    "district_id": 41,
+    "population": 1154000,
+    "foundation": 1716
+  },
+  {
+    "id": 653,
+    "name": "Оренбург",
+    "region_id": 53,
+    "district_id": 33,
+    "population": 570329,
+    "foundation": 1743
+  },
+  {
+    "id": 693,
+    "name": "Пермь",
+    "region_id": 57,
+    "district_id": 33,
+    "population": 1000679,
+    "foundation": 1723
+  },
+  {
+    "id": 744,
+    "name": "Ростов-на-Дону",
+    "region_id": 60,
+    "district_id": 40,
+    "population": 1091544,
+    "foundation": 1749
+  },
+  {
+    "id": 769,
+    "name": "Самара",
+    "region_id": 36,
+    "district_id": 33,
+    "population": 1164900,
+    "foundation": 1586
+  },
+  {
+    "id": 781,
+    "name": "Санкт-Петербург",
+    "region_id": 40,
+    "district_id": 31,
+    "population": 4848742,
+    "foundation": 1703
+  },
+  {
+    "id": 797,
+    "name": "Саратов",
+    "region_id": 63,
+    "district_id": 33,
+    "population": 836900,
+    "foundation": 1590
+  },
+  {
+    "id": 771,
+    "name": "Тольятти",
+    "region_id": 36,
+    "district_id": 33,
+    "population": 719484,
+    "foundation": 1737
+  },
+  {
+    "id": 989,
+    "name": "Тюмень",
+    "region_id": 71,
+    "district_id": 34,
+    "population": 581758,
+    "foundation": 1586
+  },
+  {
+    "id": 1002,
+    "name": "Ульяновск",
+    "region_id": 73,
+    "district_id": 33,
+    "population": 613793,
+    "foundation": 1648
+  },
+  {
+    "id": 62,
+    "name": "Уфа",
+    "region_id": 80,
+    "district_id": 33,
+    "population": 1062300,
+    "foundation": 1574
+  },
+  {
+    "id": 1009,
+    "name": "Хабаровск",
+    "region_id": 8,
+    "district_id": 42,
+    "population": 577668,
+    "foundation": 1858
+  },
+  {
+    "id": 1058,
+    "name": "Челябинск",
+    "region_id": 75,
+    "district_id": 34,
+    "population": 1130273,
+    "foundation": 1736
+  },
+  {
+    "id": 1109,
+    "name": "Ярославль",
+    "region_id": 78,
+    "district_id": 30,
+    "population": 591486,
+    "foundation": 1010
+  }
+]

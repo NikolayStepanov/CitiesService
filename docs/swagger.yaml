@@ -1,0 +1,518 @@
+basePath: /
+definitions:
+  dto.CityDTO:
+    properties:
+      district_id:
+        type: integer
+      foundation:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      population:
+        type: integer
+      region_id:
+        type: integer
+    type: object
+  dto.DistrictDTO:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  dto.RegionDTO:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  http.ErrResponse:
+    properties:
+      code:
+        description: application-specific error code
+        type: integer
+      error:
+        description: application-level error message, for debugging
+        type: string
+      status:
+        description: user-level status message
+        type: string
+    type: object
+  http.RequestDelete:
+    properties:
+      target_id:
+        type: integer
+    type: object
+  http.UpdateCityRequest:
+    properties:
+      new district_id:
+        type: integer
+      new foundation:
+        type: integer
+      new id:
+        type: integer
+      new name:
+        type: string
+      new population:
+        type: integer
+      new region_id:
+        type: integer
+    type: object
+  http.UpdateRequest:
+    properties:
+      new id:
+        type: integer
+      new name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API Server for Cities Application
+  title: Cities Service
+  version: "1.0"
+paths:
+  /cities/:
+    delete:
+      consumes:
+      - application/json
+      description: Delete city information
+      parameters:
+      - description: json delete targetID City
+        in: body
+        name: requestDelete
+        required: true
+        schema:
+          $ref: '#/definitions/http.RequestDelete'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CityDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: CityDelete
+      tags:
+      - Cities
+    get:
+      consumes:
+      - application/json
+      description: Getting information about cities
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: integer
+        name: districtsID
+        type: array
+      - in: query
+        name: foundation_max
+        type: integer
+      - in: query
+        name: foundation_min
+        type: integer
+      - collectionFormat: multi
+        in: query
+        items:
+          type: integer
+        name: id
+        type: array
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: name
+        type: array
+      - in: query
+        name: population_max
+        type: integer
+      - in: query
+        name: population_min
+        type: integer
+      - collectionFormat: multi
+        in: query
+        items:
+          type: integer
+        name: regionID
+        type: array
+      - in: query
+        name: sort_by
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.CityDTO'
+            type: array
+      summary: GetCitiesInformation
+      tags:
+      - Cities
+  /cities/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Getting information about the city
+      parameters:
+      - description: City ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CityDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: GetCityInformation
+      tags:
+      - Cities
+    put:
+      consumes:
+      - application/json
+      description: Сity information update
+      parameters:
+      - description: City ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: json update information City
+        in: body
+        name: updateCityRequest
+        schema:
+          $ref: '#/definitions/http.UpdateCityRequest'
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: UpdateCity
+      tags:
+      - Cities
+  /cities/create:
+    post:
+      consumes:
+      - application/json
+      description: Сreating a new city entry
+      parameters:
+      - description: json information City
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CityDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CityDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: CreateCity
+      tags:
+      - Cities
+  /districts/:
+    delete:
+      consumes:
+      - application/json
+      description: Delete district information
+      parameters:
+      - description: json delete targetID District
+        in: body
+        name: requestDelete
+        required: true
+        schema:
+          $ref: '#/definitions/http.RequestDelete'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.DistrictDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: DistrictDelete
+      tags:
+      - Districts
+    get:
+      consumes:
+      - application/json
+      description: Getting information about districts
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: integer
+        name: id
+        type: array
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: name
+        type: array
+      - in: query
+        name: sort_by
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.DistrictDTO'
+            type: array
+      summary: GetDistrictsInformation
+      tags:
+      - Districts
+  /districts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Getting information about the district
+      parameters:
+      - description: District ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.DistrictDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: GetDistrictInformation
+      tags:
+      - Districts
+    put:
+      consumes:
+      - application/json
+      description: District information update
+      parameters:
+      - description: District ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: json update information District
+        in: body
+        name: updateDistrictRequest
+        required: true
+        schema:
+          $ref: '#/definitions/http.UpdateRequest'
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: UpdateDistrict
+      tags:
+      - Districts
+  /districts/create:
+    post:
+      consumes:
+      - application/json
+      description: Сreating a new district entry
+      parameters:
+      - description: json information District
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.DistrictDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.DistrictDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: CreateDistrict
+      tags:
+      - Districts
+  /regions/:
+    delete:
+      consumes:
+      - application/json
+      description: Delete region information
+      parameters:
+      - description: json delete targetID Region
+        in: body
+        name: requestDelete
+        required: true
+        schema:
+          $ref: '#/definitions/http.RequestDelete'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RegionDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: RegionDelete
+      tags:
+      - Regions
+    get:
+      consumes:
+      - application/json
+      description: Getting information about regions
+      parameters:
+      - collectionFormat: multi
+        in: query
+        items:
+          type: integer
+        name: id
+        type: array
+      - collectionFormat: multi
+        in: query
+        items:
+          type: string
+        name: name
+        type: array
+      - in: query
+        name: sort_by
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.RegionDTO'
+            type: array
+      summary: GetRegionsInformation
+      tags:
+      - Regions
+  /regions/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Getting information about the region
+      parameters:
+      - description: Region ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RegionDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: GetRegionInformation
+      tags:
+      - Regions
+    put:
+      consumes:
+      - application/json
+      description: Region information update
+      parameters:
+      - description: Region ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: json update information Region
+        in: body
+        name: updateDistrictRequest
+        required: true
+        schema:
+          $ref: '#/definitions/http.UpdateRequest'
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: UpdateRegion
+      tags:
+      - Regions
+  /regions/create:
+    post:
+      consumes:
+      - application/json
+      description: Сreating a new region entry
+      parameters:
+      - description: json information Region
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RegionDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RegionDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrResponse'
+      summary: CreateRegion
+      tags:
+      - Regions
+swagger: "2.0"

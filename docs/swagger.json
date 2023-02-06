@@ -1,0 +1,792 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API Server for Cities Application",
+        "title": "Cities Service",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/cities/": {
+            "get": {
+                "description": "Getting information about cities",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "GetCitiesInformation",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "districtsID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "foundation_max",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "foundation_min",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "population_max",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "population_min",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "regionID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.CityDTO"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete city information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "CityDelete",
+                "parameters": [
+                    {
+                        "description": "json delete targetID City",
+                        "name": "requestDelete",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.RequestDelete"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CityDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cities/create": {
+            "post": {
+                "description": "Сreating a new city entry",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "CreateCity",
+                "parameters": [
+                    {
+                        "description": "json information City",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CityDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CityDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cities/{id}": {
+            "get": {
+                "description": "Getting information about the city",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "GetCityInformation",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "City ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CityDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Сity information update",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "UpdateCity",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "City ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "json update information City",
+                        "name": "updateCityRequest",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/http.UpdateCityRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/districts/": {
+            "get": {
+                "description": "Getting information about districts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Districts"
+                ],
+                "summary": "GetDistrictsInformation",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.DistrictDTO"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete district information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Districts"
+                ],
+                "summary": "DistrictDelete",
+                "parameters": [
+                    {
+                        "description": "json delete targetID District",
+                        "name": "requestDelete",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.RequestDelete"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.DistrictDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/districts/create": {
+            "post": {
+                "description": "Сreating a new district entry",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Districts"
+                ],
+                "summary": "CreateDistrict",
+                "parameters": [
+                    {
+                        "description": "json information District",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.DistrictDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.DistrictDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/districts/{id}": {
+            "get": {
+                "description": "Getting information about the district",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Districts"
+                ],
+                "summary": "GetDistrictInformation",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "District ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.DistrictDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "District information update",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "Districts"
+                ],
+                "summary": "UpdateDistrict",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "District ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "json update information District",
+                        "name": "updateDistrictRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.UpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/regions/": {
+            "get": {
+                "description": "Getting information about regions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "GetRegionsInformation",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sort_by",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.RegionDTO"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete region information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "RegionDelete",
+                "parameters": [
+                    {
+                        "description": "json delete targetID Region",
+                        "name": "requestDelete",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.RequestDelete"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.RegionDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/regions/create": {
+            "post": {
+                "description": "Сreating a new region entry",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "CreateRegion",
+                "parameters": [
+                    {
+                        "description": "json information Region",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RegionDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.RegionDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/regions/{id}": {
+            "get": {
+                "description": "Getting information about the region",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "GetRegionInformation",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Region ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.RegionDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Region information update",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "UpdateRegion",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Region ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "json update information Region",
+                        "name": "updateDistrictRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.UpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/http.ErrResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.CityDTO": {
+            "type": "object",
+            "properties": {
+                "district_id": {
+                    "type": "integer"
+                },
+                "foundation": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "population": {
+                    "type": "integer"
+                },
+                "region_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.DistrictDTO": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.RegionDTO": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "http.ErrResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "application-specific error code",
+                    "type": "integer"
+                },
+                "error": {
+                    "description": "application-level error message, for debugging",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "user-level status message",
+                    "type": "string"
+                }
+            }
+        },
+        "http.RequestDelete": {
+            "type": "object",
+            "properties": {
+                "target_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "http.UpdateCityRequest": {
+            "type": "object",
+            "properties": {
+                "new district_id": {
+                    "type": "integer"
+                },
+                "new foundation": {
+                    "type": "integer"
+                },
+                "new id": {
+                    "type": "integer"
+                },
+                "new name": {
+                    "type": "string"
+                },
+                "new population": {
+                    "type": "integer"
+                },
+                "new region_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "http.UpdateRequest": {
+            "type": "object",
+            "properties": {
+                "new id": {
+                    "type": "integer"
+                },
+                "new name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

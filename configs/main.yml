@@ -1,0 +1,9 @@
+http:
+  port: 8080
+  maxHeaderBytes: 1
+  readTimeout: 10s
+  writeTimeout: 10s
+
+fileStorage:
+  url: localhost
+  bucket: CitiesService
